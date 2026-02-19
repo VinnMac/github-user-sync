@@ -22,5 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         followers.innerText = json.followers;
         following.innerText = json.following;
     })
-    
+    .catch(function(error) {
+        alert('Ocorreu um erro ao entrar em contato com o servidor, tente novamente mais tarde.')
+    })
 })
