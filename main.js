@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const followers = document.querySelector('#followers');
     const following = document.querySelector('#following');
     const githubLink = document.querySelector('#github-link');
-    const endpoint = 'https://api.github.com/users/VinnMac';
-
 
     fetch('https://api.github.com/users/VinnMac')
     .then(function(resp) {
+
+        if (!resp.ok) {
+            throw new Error(`Usuário não encontrado`);
+        }
         return resp.json();
     })
     .then(function(json) {
@@ -23,6 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
         following.innerText = json.following;
     })
     .catch(function(error) {
-        alert('Ocorreu um erro ao entrar em contato com o servidor, tente novamente mais tarde.')
+        alert(error.message);
     })
 })
